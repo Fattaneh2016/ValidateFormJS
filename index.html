@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+   
+<title>Form management</title>
+        <script type = "text/javascript">
+
+
+function correct() {
+    var input_object =
+   document.getElementById("serial");
+    var value = input_object.value;
+    var current_length = value.length;
+    if (current_length) {
+        var last_character =
+   value.substring(current_length - 1);
+        switch (current_length) {
+            case 4:
+            case 8:
+            case 11:
+                if (last_character != '-') {
+                    value = value.substring(0,
+   current_length - 1);
+                }
+                break;
+            default:
+                if (!/\d/.test(last_character)) {
+                    value = value.substring(0,
+   current_length - 1);
+                }
+        }
+        if (current_length > 12) {
+            value = value.substring(0, current_length
+   - 1);
+        }
+        current_length = value.length;
+        switch (current_length) {
+            case 3:
+            case 7:
+            case 10:
+                value += "-";
+        }
+        input_object.value = value;
+    }
+}
+</script>
+</head>
+<body>
+<h1>Form management</h1>
+<form>
+Enter here a serial number in the pattern XXX-XXX-XXX, where each X is a digit: <input id = "serial"
+
+  type = 'text' size = '12' onkeyup ="correct();">.  
+</form>
+</body>
+</html>
